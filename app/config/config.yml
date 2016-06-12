@@ -1,0 +1,64 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: en
+
+framework:
+    #esi:             ~
+    #translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments:       ~
+    http_method_override: true
+    assets: ~
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    routing_loader:
+        default_format: json
+    format_listener:
+        enabled: true
+        rules:
+            - { path: '^/', priorities: ['json'], fallback_format: 'json' }
+    view:
+        view_response_listener: 'force'
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+
+endroid_twitter:
+    consumer_key: "%twitter_api.consumer_key%"
+    consumer_secret: "%twitter_api.consumer_secret%"
+    access_token: "%twitter_api.access_token%"
+    access_token_secret: "%twitter_api.access_token_secret%"
+
+lsw_memcache:
+    session:
+        pool: default
+    pools:
+        default:
+            servers:
+              - { host: localhost, tcp_port: 11211 }

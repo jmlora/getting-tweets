@@ -1,0 +1,4 @@
+services:
+    twitter.api.service:
+        class: AppBundle\Services\TwitterApi
+        arguments: ["@endroid.twitter", "@memcache.default"]
