@@ -1,4 +1,9 @@
-httpdocs
-========
+README
+=======
+Simple REST API to get tweets from an user.
 
-A Symfony project created on June 12, 2016, 1:19 pm.
+This project uses Symfony2 with extra bundles:
+ - FOSRestBundle (https://github.com/FriendsOfSymfony/FOSRestBundle)
+ - LswMemcacheBundle (https://github.com/LeaseWeb/LswMemcacheBundle)
+ - JMSSerializerBundle (https://github.com/schmittjoh/JMSSerializerBundle)
+ - EndroidTwitterBundle (https://github.com/endroid/EndroidTwitterBundle)
